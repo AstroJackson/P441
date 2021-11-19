@@ -11,13 +11,14 @@ R = 1.
 l = 3
 w = 2
 
-frame_speed = 20 #edit this to change how many frames the simulation skips (somewhat related to fps (frames per second))
+frame_interval_ms = 100 # milliseconds between frames
+frame_skip_interval = 10 # how many frames to skip
 ######## Nothing else needs to be edited
 
 
 dt = .01 # determines how accurate the simulation is. A lower dt gives a more accurate simulation!
 t = 0.
-final_time = 10000
+final_time = 1000
 v = 0 # dphi / dt
 p = [0.] # phi
 times = [0] # list of times, in seconds
@@ -73,8 +74,9 @@ def update(frame): # the animation part of this code
     #plt.text(0,0, f'$w = {w+frame}$', fontsize = 11, bbox = dict(facecolor = 'yellow', alpha = 0.5))
     return time_text, ln, pt1
 #plt.plot(wheel_x, wheel_y)
-ani = FuncAnimation(fig, update, frames= range(0, 100000, 20),init_func=init, blit=True)
+ani = FuncAnimation(fig, update, frames= range(0, 100000, frame_skip_interval),init_func=init, blit=True, interval = frame_interval_ms)
 ax.set_xlabel("x (m)")
 ax.set_ylabel("y (m)")
 ax.set_title("Pendulum on a Rotating Wheel")
 plt.show()
+#help(FuncAnimation)
