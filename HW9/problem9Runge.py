@@ -2,6 +2,8 @@ import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt, os
 # if os.getcwd()[-1] != "HW9":
 #     os.chdir("HW9")
 """
+I use a 4th-order Runge_Kutta approximation for r dot, and a second-order Taylor approximation for r
+
 rii = r double dot
 ri = r dot
 ri_0 = intital r dot
@@ -42,7 +44,7 @@ ri = ri_0
 ####### this the simulation
 for i in range(1, int(final_time/dt)):
     r = r_array[i-1] # current r before adding another one
-    r_array[i] = r + dt*ri + .5*dt*dt*rii(r) # second order Taylor aprox
+    r_array[i] = r + dt*ri + .5*dt*dt*rii(r) # second order Taylor aprox because I am unsure how to incorporate a Runge-Kutta here
     t += dt
     times[i] = t
 
@@ -60,7 +62,7 @@ for i in range(1, int(final_time/dt)):
 fig, (ax1, ax2) = plt.subplots(2, 1)
 ax1.plot(times, r_array, 'o')
 ax1.set_ylabel('r')
-ax1.set_title("r & dr/dt vs time")
+ax1.set_title("r & dr/dt vs time (Runge-Kutta)")
 
 ax2.plot(times, ri_array, 'o')
 ax2.set_ylabel("dr/dt")
