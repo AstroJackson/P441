@@ -1,6 +1,6 @@
 import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt, os
-if os.getcwd()[-1] != "HW9":
-    os.chdir("HW9")
+# if os.getcwd()[-1] != "HW9":
+#     os.chdir("HW9")
 """
 rii = r double dot
 ri = r dot
@@ -57,7 +57,7 @@ for i in range(1, int(final_time/dt)):
 fig, (ax1, ax2) = plt.subplots(2, 1)
 ax1.plot(times, r_array, 'o')
 ax1.set_ylabel('r')
-ax1.set_title("")
+ax1.set_title("r & dr/dt vs time")
 
 ax2.plot(times, ri_array, 'o')
 ax2.set_ylabel("dr/dt")

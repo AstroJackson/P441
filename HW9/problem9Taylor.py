@@ -1,6 +1,6 @@
 import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt, os
-if os.getcwd()[-1] != "HW9":
-    os.chdir("HW9")
+# if os.getcwd()[-1] != "HW9":
+#     os.chdir("HW9")
 """
 rii = r double dot
 ri = r dot
