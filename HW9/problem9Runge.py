@@ -38,6 +38,8 @@ times[0] = t
 ri_array[0] = ri_0
 r_array[0] = r_0
 ri = ri_0
+
+####### this the simulation
 for i in range(1, int(final_time/dt)):
     r = r_array[i-1] # current r before adding another one
     r_array[i] = r + dt*ri + .5*dt*dt*rii(r) # second order Taylor aprox
@@ -53,6 +55,7 @@ for i in range(1, int(final_time/dt)):
     ri = 1/6*k1 + 1/3*k2 + 1/3*k3 + 1/6*k4 # fourth order Runge-Kutta
     #ri = ri + dt*rii(r)
     ri_array[i] = ri
+#######
 
 fig, (ax1, ax2) = plt.subplots(2, 1)
 ax1.plot(times, r_array, 'o')
