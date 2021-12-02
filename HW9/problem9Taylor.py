@@ -15,7 +15,8 @@ def rii(r):
         print("r is 0")
         return 0
     centrifugal = l2 / (mu*mu * r**3)
-    accel = - (U0*np.exp(-r/r0) / (mu * r) * (1 + 1/r))
+    #accel = - (U0*np.exp(-r/r0) / (mu * r) * (1 + 1/r))
+    accel = -U0*r0/r**2 / mu
     return centrifugal + accel
 
 r0 = 1.
@@ -24,7 +25,7 @@ mu = 1.
 l2 = .5
 ###
 ri_0 = .1
-r_0 = .001
+r_0 = 1
 ###
 
 final_time = 100
@@ -42,7 +43,7 @@ r_array[0] = r_0
 ri = ri_0
 for i in range(1, int(final_time/dt)):
     r = r_array[i-1] # current r before adding another one
-    r_array[i] = r + dt*ri + .5*dt*dt*rii(r)
+    r_array[i] = r + dt*ri# + .5*dt*dt*rii(r)
     t += dt
     times[i] = t
     
