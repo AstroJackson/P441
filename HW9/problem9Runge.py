@@ -1,4 +1,4 @@
-import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt, os
+import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt, os, matplotlib.patches as mpl_patches
 # if os.getcwd()[-1] != "HW9":
 #     os.chdir("HW9")
 """
@@ -14,17 +14,17 @@ def rii(r):
     if r == 0:
         print("r is 0")
         return 0
-    centrigal = l2 / (mu*mu * r**3)
+    centrifugal = l2 / (mu*mu * r**3)
     accel = - U0*np.exp(-r/r0) / (mu * r) * (1 + 1/r)
-    return centrigal + accel
+    return centrifugal + accel
 
 r0 = 1.
 U0 = 1.
 mu = 1.
 l2 = .5
 ###
-ri_0 = 100
-r_0 = 1
+ri_0 = -1
+r_0 = .01
 ###
 
 final_time = 100
@@ -54,15 +54,24 @@ for i in range(1, int(final_time/dt)):
     k2 = dt*rii(r+.5*k1)
     k3 = dt*rii(r+.5*k2)
     k4 = dt*rii(r+k3)
-    ri = 1/6*k1 + 1/3*k2 + 1/3*k3 + 1/6*k4 # fourth order Runge-Kutta
+    ri = ri + 1/6*k1 + 1/3*k2 + 1/3*k3 + 1/6*k4 # fourth order Runge-Kutta
     #ri = ri + dt*rii(r)
     ri_array[i] = ri
 #######
 
-fig, (ax1, ax2) = plt.subplots(2, 1)
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize = (7,7))
 ax1.plot(times, r_array, 'o')
 ax1.set_ylabel('r')
-ax1.set_title("r & dr/dt vs time (Runge-Kutta)")
+ax1.set_title("r & dr/dt vs time")
+
+labels = []
+labels.append("r(t=0) = {}".format(r_0)) # these give the textbox in the upper right
+labels.append("dr/dt(t=0) = {}".format(ri_0))
+handles = [mpl_patches.Rectangle((0, 0), 1, 1, fc="white", ec="white", alpha=0)] * len(labels)
+ax1.legend(handles, labels, loc='best', fontsize='small', 
+          fancybox=True, framealpha=0.7, 
+          handlelength=0, handletextpad=0)
+
 
 ax2.plot(times, ri_array, 'o')
 ax2.set_ylabel("dr/dt")
