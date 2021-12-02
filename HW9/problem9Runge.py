@@ -23,8 +23,8 @@ U0 = 1.
 mu = 1.
 l2 = .5
 ###
-ri_0 = -1
-r_0 = .01
+ri_0 = .1
+r_0 = .001
 ###
 
 final_time = 100
@@ -78,7 +78,12 @@ ax2.set_ylabel("dr/dt")
 
 ax2.set_xlabel("time")
 
+print("# r array")
+print(r_array)
+print("#")
+
 print(ri_array)
+print("#")
 
 plt.savefig("hw9_runge.pdf")
 plt.show()

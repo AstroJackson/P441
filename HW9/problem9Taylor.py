@@ -15,7 +15,7 @@ def rii(r):
         print("r is 0")
         return 0
     centrifugal = l2 / (mu*mu * r**3)
-    accel = - U0*np.exp(-r/r0) / (mu * r) * (1 + 1/r)
+    accel = - (U0*np.exp(-r/r0) / (mu * r) * (1 + 1/r))
     return centrifugal + accel
 
 r0 = 1.
@@ -23,8 +23,8 @@ U0 = 1.
 mu = 1.
 l2 = .5
 ###
-ri_0 = -1
-r_0 = 0.01
+ri_0 = .1
+r_0 = .001
 ###
 
 final_time = 100
@@ -61,7 +61,21 @@ ax2.set_ylabel("dr/dt")
 
 ax2.set_xlabel("time")
 
-print(ri_array)
+#print(ri_array)
 
 plt.savefig("hw9_taylor.pdf")
+
+print("# r array")
+print(r_array)
+print("#")
+
+print(ri_array)
+print("#")
 plt.show()
+
+# plt.clf()
+
+# stuff = np.arange(.5,10,.2)
+# stuffy = [rii(s) for s in stuff]
+# plt.plot(stuff, stuffy)
+# plt.show()
