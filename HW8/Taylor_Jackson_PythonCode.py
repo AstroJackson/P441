@@ -3,23 +3,39 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import matplotlib.patches as mpl_patches
 
-def alpha(phi, t):
+"""
+
+The problem is described in "Classical Mechanics" by John R. Taylor. Problem 7.29 is as follows:
+
+"Figure 7.14 shows a simple pendulum (mass m, length 1) whose point of support P is attached to the 
+edge of a wheel (center 0, radius R) that is forced to rotate at a fixed angular velocity w. At t = 0, 
+the point P is level with 0 on the right. Write down the Lagrangian and find the equation of motion 
+for the angle 0. [Hint: Be careful writing down the kinetic energy T . A safe way to get the velocity 
+right is to write down the position of the bob at time t, and then differentiate.] Check that your 
+answer makes sense in the special case that co = 0."
+
+The solution is given by the angular acceleration function below.
+
+"""
+
+
+def alpha(phi, t): # angular acceleration
   return -g/l*np.sin(phi) + R/l*w*w*(np.sin(w*t) * np.sin(phi) + np.cos(w*t) * np.cos(phi))
-######## Feel free to edit these to change the simulation!
+######## Feel free to edit these to change the simulation.
 g = 9.8
 R = 1.
 l = 3
 w = 2
 
 frame_interval_ms = 100 # milliseconds between frames
-frame_skip_interval = 10 # how many frames to skip
+frame_skip_interval = 10 # how many frames to skip, related to frames per second
 ######## Nothing else needs to be edited
 
 
-dt = .01 # determines how accurate the simulation is. A lower dt gives a more accurate simulation!
+dt = .01 # determines how accurate the simulation is. A lower dt gives a more accurate simulation.
 t = 0.
 final_time = 1000
-v = 0 # dphi / dt
+v = 0 # dphi / dt, i.e. angular velocity
 p = [0.] # phi
 times = [0] # list of times, in seconds
 
