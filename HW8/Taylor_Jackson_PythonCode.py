@@ -14,7 +14,7 @@ for the angle 0. [Hint: Be careful writing down the kinetic energy T . A safe wa
 right is to write down the position of the bob at time t, and then differentiate.] Check that your 
 answer makes sense in the special case that co = 0."
 
-The solution is given by the angular acceleration function below.
+The solution is given by the angular acceleration function, named alpha, below.
 
 """
 
